@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Egypt's rich history and modern wonders. Explore the top 10 tourist destinations in this ancient land of pharaohs.">
+    <meta name="keywords" content="Egypt, tourism, pyramids, Cairo, Luxor, Aswan, Red Sea, pharaohs, ancient Egypt, travel Egypt">
+    <title>Discover Egypt - Land of Pharaohs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FFD700;
+            --primary-dark: #FFC000;
+            --primary-light: #FFE44D;
+            --secondary-color: #F4A261;
+            --dark-color: #333333;
+            --light-color: #FFFFFF;
+            --gold-color: #FFD700;
+            --sand-color: #F5DEB3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #222;
+            color: var(--light-color);
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 999;
+            transition: all 0.1s ease;
+            transition-property: background, transform;
+            transform-origin: 100% 100%;
+        }
+
+        .cursor-grow {
+            transform: scale(2);
+            background-color: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--gold-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: white;
+            min-height: 60px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        nav.scrolled {
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin: 5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            text-align: center;
+            position: relative;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-dark);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* Cards Section */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dark-mode .card {
+            background-color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .dark-mode .card p {
+            color: var(--light-color);
+        }
+
+        .view-more {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .view-more:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section h2::after {
+            background-color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-info {
+            margin-bottom: 2rem;
+        }
+
+        .email-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            font-size: 1.5rem;
+        }
+
+        .email-link:hover {
+            color: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Typing Animation */
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                min-height: 40px;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1s ease-in-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Discover<span>Egypt</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About Egypt</a></li>
+            <li><a href="#safety">Safety</a></li>
+            <li><a href="#why-visit">Why Visit</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <button class="theme-toggle" id="themeToggle">🌓</button>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <header>
+        <div id="particles-js"></div>
+        <div class="header-content">
+            <h1 class="animate-fade">Welcome to Egypt</h1>
+            <p class="subtitle animate-fade" id="typing-text"></p>
+            <a href="#destinations" class="cta-button animate-fade">Explore Destinations</a>
+        </div>
+        <div class="scroll-down" id="scrollDown">↓</div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Egypt Section -->
+        <section id="about" class="animate-slide-up">
+            <h2>The Cradle of Civilization</h2>
+            <p>Egypt, the land of pharaohs and pyramids, stands as one of the world's most ancient civilizations with a recorded history spanning over 5,000 years. This remarkable country along the Nile River gave birth to innovations that shaped human progress - from monumental architecture and sophisticated mathematics to paper-making and advanced medicine.</p>
+            
+            <p>The ancient Egyptians built awe-inspiring monuments like the Great Pyramids of Giza, the only surviving wonder of the ancient world, and the enigmatic Sphinx that has guarded the Giza plateau for millennia. Their hieroglyphic writing system, developed around 3200 BCE, represents one of the earliest forms of written communication.</p>
+            
+            <p>Egypt's golden age under pharaohs like Ramses II and Tutankhamun left behind treasures that continue to captivate the world. The discovery of King Tut's nearly intact tomb in 1922 by Howard Carter revealed unimaginable riches and provided unprecedented insight into ancient Egyptian burial practices and beliefs about the afterlife.</p>
+            
+            <p>Today, Egypt proudly preserves this extraordinary heritage while embracing modernity. The Egyptian Museum in Cairo houses the world's most extensive collection of pharaonic antiquities, and the soon-to-open Grand Egyptian Museum near the Giza pyramids will showcase these treasures in a state-of-the-art facility.</p>
+        </section>
+
+        <!-- Safety and Development Section -->
+        <section id="safety" class="animate-slide-up">
+            <h2>Modern Egypt: Safe & Developing</h2>
+            <p>Contemporary Egypt has made significant strides in ensuring visitor safety and national development. The government has implemented comprehensive security measures at all tourist sites, airports, and major cities. Tourist police are present throughout popular destinations to assist visitors, and Egypt maintains a strong security presence to ensure everyone's safety.</p>
+            
+            <p>In recent years, Egypt has undertaken massive infrastructure projects including new roads, bridges, and an expanded metro system in Cairo. The country has built entirely new cities like the New Administrative Capital to accommodate population growth and modern urban needs. These developments are part of Egypt's Vision 2030 strategy for sustainable development.</p>
+            
+            <p>The tourism sector, a vital part of Egypt's economy, has seen substantial investment with upgraded facilities at historical sites and new luxury resorts along the Red Sea coast. Egypt's beaches in Hurghada and Sharm El-Sheikh are internationally recognized for their safety, cleanliness, and world-class diving opportunities.</p>
+            
+            <p>Egyptian hospitality is legendary, with locals known for their warmth and generosity toward visitors. The country's rich cultural traditions continue alongside modern amenities, offering travelers a unique blend of experiences. From five-star hotels to traditional markets (souks), Egypt caters to all preferences while maintaining high standards of safety and comfort.</p>
+        </section>
+
+        <!-- Why Visit Egypt Section -->
+        <section id="why-visit" class="animate-slide-up">
+            <h2>Why Choose Egypt for Your Next Adventure?</h2>
+            <p>Egypt offers an unparalleled travel experience that combines awe-inspiring ancient history with breathtaking natural beauty and vibrant modern culture. Here's why Egypt should be at the top of your travel list:</p>
+            
+            <p><strong>1. Timeless Monuments:</strong> Walk in the footsteps of pharaohs as you explore the pyramids, temples, and tombs that have stood for millennia. The scale and preservation of Egypt's ancient sites are unmatched anywhere in the world.</p>
+            
+            <p><strong>2. The Nile River:</strong> Cruise the world's longest river, just as travelers have done for centuries, passing lush landscapes and historic sites along its banks. A Nile cruise offers both relaxation and cultural enrichment.</p>
+            
+            <p><strong>3. Red Sea Riviera:</strong> Egypt's coastline along the Red Sea boasts some of the planet's best diving and snorkeling, with vibrant coral reefs and abundant marine life in crystal-clear waters.</p>
+            
+            <p><strong>4. Cultural Richness:</strong> From the Islamic architecture of Cairo to Nubian villages in Aswan, Egypt's living cultures add depth to your experience beyond the ancient monuments.</p>
+            
+            <p><strong>5. Affordable Luxury:</strong> Egypt offers world-class accommodations, dining, and services at prices significantly lower than many other tourist destinations, providing exceptional value.</p>
+            
+            <p><strong>6. Year-Round Sunshine:</strong> With a warm climate throughout most of the year, Egypt is always ready to welcome visitors, though spring and autumn offer particularly pleasant temperatures.</p>
+            
+            <p>Whether you're a history enthusiast, an adventure seeker, or simply looking for a memorable vacation, Egypt delivers experiences that will stay with you forever.</p>
+        </section>
+
+        <!-- Top Destinations Section -->
+        <section id="destinations" class="animate-slide-up">
+            <h2>Top 10 Must-Visit Destinations in Egypt</h2>
+            <p>Explore Egypt's most breathtaking sites, from ancient wonders to natural marvels. Each destination offers a unique window into Egypt's glorious past and vibrant present.</p>
+            
+            <div class="cards-container">
+                <!-- Destination 1 -->
+                <a href="Pyramids-of-Giza.html" class="card">
+                    <div class="card-img">
+                        <img src="Pyramids of Giza.jpeg" alt="Pyramids of Giza">
+                    </div>
+                    <div class="card-content">
+                        <h3>Pyramids of Giza</h3>
+                        <p>The last surviving wonder of the ancient world, the Great Pyramid was the tallest man-made structure for over 3,800 years.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 2 -->
+                <a href="Luxor-Temple.html" class="card">
+                    <div class="card-img">
+                        <img src="Luxor Temple.jpeg" alt="Luxor Temple">
+                    </div>
+                    <div class="card-content">
+                        <h3>Luxor Temple</h3>
+                        <p>This magnificent temple complex was once part of ancient Thebes and remains remarkably well-preserved.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 3 -->
+                <a href="Abu-Simbel.html" class="card">
+                    <div class="card-img">
+                        <img src="Abu Simbel.jpeg" alt="Abu Simbel">
+                    </div>
+                    <div class="card-content">
+                        <h3>Abu Simbel</h3>
+                        <p>Ramses II's monumental temple was relocated in a massive UNESCO operation to save it from Nile flooding.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 4 -->
+                <a href="Valley-of-the-Kings.html" class="card">
+                    <div class="card-img">
+                        <img src="Valley of the Kings.jpeg" alt="Valley of the Kings">
+                    </div>
+                    <div class="card-content">
+                        <h3>Valley of the Kings</h3>
+                        <p>The burial place of Egypt's New Kingdom pharaohs, including Tutankhamun's famous tomb.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 5 -->
+                <a href="Aswan-and-Philae-Temple.html" class="card">
+                    <div class="card-img">
+                        <img src="Aswan & Philae Temple.jpeg" alt="Aswan and Philae Temple">
+                    </div>
+                    <div class="card-content">
+                        <h3>Aswan & Philae Temple</h3>
+                        <p>Egypt's southern gateway features beautiful Nile scenery and the romantic island temple of Isis.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 6 -->
+                <a href="Alexandria.html" class="card">
+                    <div class="card-img">
+                        <img src="Alexandria.jpeg" alt="Alexandria">
+                    </div>
+                    <div class="card-content">
+                        <h3>Alexandria</h3>
+                        <p>Founded by Alexander the Great, this Mediterranean city boasts Greco-Roman ruins and a modern cultural scene.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 7 -->
+                <a href="Siwa-Oasis.html" class="card">
+                    <div class="card-img">
+                        <img src="Siwa Oasis.jpeg" alt="Siwa Oasis">
+                    </div>
+                    <div class="card-content">
+                        <h3>Siwa Oasis</h3>
+                        <p>A remote desert paradise with freshwater springs, olive groves, and unique Berber culture.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 8 -->
+                <a href="Red-Sea-Rivier.html" class="card">
+                    <div class="card-img">
+                        <img src="Red Sea Riviera.jpeg" alt="Red Sea Riviera">
+                    </div>
+                    <div class="card-content">
+                        <h3>Red Sea Rivier</h3>
+                        <p>World-class diving and beach resorts in Hurghada and Sharm El-Sheikh with spectacular marine life.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 9 -->
+                <a href="White-Desert.html" class="card">
+                    <div class="card-img">
+                        <img src="White Desert.jpeg" alt="White Desert">
+                    </div>
+                    <div class="card-content">
+                        <h3>White Desert</h3>
+                        <p>Surreal chalk rock formations create a moon-like landscape in Egypt's Western Desert.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+                
+                <!-- Destination 10 -->
+                <a href="Islamic-Cairo.html" class="card">
+                    <div class="card-img">
+                        <img src="Islamic Cairo.jpeg" alt="Islamic Cairo">
+                    </div>
+                    <div class="card-content">
+                        <h3>Islamic Cairo</h3>
+                        <p>Medieval mosques, madrasas, and markets in one of the Islamic world's most important historic centers.</p>
+                        <span class="view-more">View More</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section animate-slide-up">
+            <h2>Ready for the Adventure of a Lifetime?</h2>
+            <p>Egypt awaits with open arms and countless wonders to discover. From the moment you set foot in this ancient land, you'll be captivated by its magic, warmed by its hospitality, and amazed by its treasures both old and new.</p>
+            <p>Don't just dream about history - walk through it, touch it, and let it transform you. Your Egyptian adventure begins with a single step - why not take it today?</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Discover<span>Egypt</span></div>
+            <div class="footer-info">
+                <a href="mailto:mohammedabdelnaeim18@gmail.com" class="email-link" title="Contact us via Gmail">
+                    <i class="fab fa-google"></i>
+                </a>
+            </div>
+            <div class="copyright">Designed by Mohammed Neem © <span id="year"></span></div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+
+        // Cursor hover effect
+        const hoverElements = document.querySelectorAll('a, button, .card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseover', () => {
+                cursor.classList.add('cursor-grow');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-grow');
+            });
+        });
+
+        // Scroll Down Button
+        document.getElementById('scrollDown').addEventListener('click', () => {
+            window.scrollBy({
+                top: window.innerHeight - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Typing Animation
+        const text = "Where ancient wonders meet modern marvels";
+        const typingText = document.getElementById('typing-text');
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typingText.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingText.innerHTML += '<span class="typed-cursor">|</span>';
+            }
+        }
+        
+        // Start typing animation when page loads
+        window.addEventListener('load', typeWriter);
+
+        // Particles.js Configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#FFD700"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#FFD700",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

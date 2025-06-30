@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Desert - Discover Egypt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FFD700; /* Gold color */
+            --primary-dark: #FFC000; /* Darker gold */
+            --dark-color: #333333;
+            --light-color: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('download (27).jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Background animation */
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1572252606194-5a41d04a4b4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            z-index: -1;
+            animation: backgroundFade 16s infinite;
+        }
+
+        @keyframes backgroundFade {
+            0% { opacity: 0; }
+            25% { opacity: 0; }
+            50% { opacity: 1; }
+            75% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideDown 1s ease-out;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            color: var(--primary-color);
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .content-section {
+            margin: 3rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .content-section:nth-child(1) { animation-delay: 0.3s; }
+        .content-section:nth-child(2) { animation-delay: 0.5s; }
+        .content-section:nth-child(3) { animation-delay: 0.7s; }
+        .content-section:nth-child(4) { animation-delay: 0.9s; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-dark);
+            bottom: -10px;
+            left: 0;
+            animation: expandLine 1s ease-out forwards;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 250px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .facts {
+            background-color: #f5f5f5;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-dark);
+        }
+
+        .facts:hover {
+            transform: translateX(10px);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .facts h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .facts ul {
+            list-style-position: inside;
+        }
+
+        .facts li {
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            padding-left: 10px;
+        }
+
+        .facts li:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+            }
+            to {
+                width: 80px;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header {
+                height: 50vh;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section with White Desert Landscape -->
+    <header>
+        <a href="index.html" class="back-button pulse">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>White Desert</h1>
+        <p>Egypt's surreal desert wonderland</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section class="content-section">
+            <h2>About the White Desert</h2>
+            <p>The White Desert is Egypt's most surreal landscape, located about 500km southwest of Cairo in the Farafra depression. Famous for its spectacular white chalk rock formations shaped by wind erosion, the desert looks like an alien planet or arctic snowscape.</p>
+            
+            <p>The most famous formations include mushroom-shaped rocks, giant pebbles, and the iconic "chicken and tree" formation. At sunset and sunrise, the white rocks glow golden and pink, creating one of Egypt's most breathtaking natural spectacles.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images (2).jpeg" alt="White Desert formations">
+                    <div class="gallery-caption">Surreal chalk formations</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="download (29).jpeg" alt="Desert at sunset">
+                    <div class="gallery-caption">Golden sunset on the rocks</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="download (28).jpeg" alt="Crystal Mountain">
+                    <div class="gallery-caption">Nearby Crystal Mountain</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="facts">
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li><strong>Location:</strong> Farafra Depression, Western Desert</li>
+                    <li><strong>Area:</strong> About 300 km² protected area</li>
+                    <li><strong>Formation:</strong> Cretaceous chalk eroded over millions of years</li>
+                    <li><strong>Elevation:</strong> Approximately 300m above sea level</li>
+                    <li><strong>Nearby Attractions:</strong> Black Desert, Crystal Mountain</li>
+                    <li><strong>Protection:</strong> White Desert National Park since 2002</li>
+                    <li><strong>UNESCO:</strong> Tentative World Heritage Site</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Visiting the White Desert</h2>
+            <p>The best time to visit is between October and April when daytime temperatures are pleasant (20-25°C). Summer temperatures can exceed 40°C. Most visitors take 4x4 desert safaris from Bahariya Oasis (about 4 hours) or Farafra Oasis (1 hour).</p>
+            
+            <p>Overnight camping is the best way to experience the White Desert, allowing you to see the spectacular sunrise and sunset. Essential items include warm clothing (nights get cold), sun protection, and plenty of water. All visits require a local guide.</p>
+            
+            <p>Most tours combine the White Desert with other Western Desert attractions like the Black Desert, Crystal Mountain, and the hot springs at Bir Sitta. Basic accommodation is available in Bahariya and Farafra, with luxury options at Bahariya's eco-lodges.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Discover Egypt. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Background image rotation with authentic White Desert images
+        const header = document.querySelector('header');
+        const images = [
+            'download (27).jpeg',
+        ];
+        
+        let currentImage = 0;
+        
+        function changeBackground() {
+            currentImage = (currentImage + 1) % images.length;
+            header.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${images[currentImage]}')`;
+        }
+        
+        setInterval(changeBackground, 8000);
+    </script>
+</body>
+</html>
